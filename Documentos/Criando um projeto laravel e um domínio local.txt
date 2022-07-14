@@ -1,0 +1,28 @@
+Coisas Importantes para criar um projeto Laravel e criar um domínio local
+
+laravel new nome-projeto
+
+php artisan serve
+
+copiar a pasta do projeto e colar no xampp em htdocs
+
+Na pasta do xampp no disco local: apache -> conf -> extra: abra o arquivo httpd-vhosts.conf
+
+No arquivo httpd-vhosts.conf adicione uma VirtualHost da seguinte maneira:
+
+
+<VirtualHost *:80>
+    DocumentRoot "C:/xampp/htdocs/teste/public"
+    ServerName teste.com
+    <Directory "C:\xampp\htdocs\teste\public">  
+    </Directory>
+</VirtualHost>
+
+
+Na pasta do Windows do disco local: System32 -> drivers -> etc: abra o arquivo hosts (precisa de permissões de administrador para salvar as alterações
+
+No arquivo hosts crie uma rota/ip local com o nome do ServerName criado no Virtual Host, como: 127.0.0.1 teste.com
+
+Abra o xampp e de start no Apache
+
+No navegador digite o domínio: http://ServerName, como: http://teste.com 
