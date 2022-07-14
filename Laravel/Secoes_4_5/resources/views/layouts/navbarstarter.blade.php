@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
 
-    <a class="navbar-brand" href="https://github.com/layonFonseca/Estagio/Laravel/Secoes_4_5">Repositório</a>
+    <a class="navbar-brand" href="https://github.com/layonFonseca/Estagio/tree/main/Laravel/Secoes_4_5">Repositório</a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" 
             data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" 
