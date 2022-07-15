@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+  <html lang="en">
+
+      <head>
+          <meta charset="UTF-8">
+          <script src="https://unpkg.com/vue@2"></script>
+          <title>Trabalhando com VueJs</title>
+      </head>
+
+          <body>
+
+              <div id="app">
+                <p>Nome completo: {{ nomeCompleto }}</p>
+                <input @keyup.enter="alterarNome" placeholder="Novo nome">
+              </div>
+
+              <script>
+                      new Vue({
+                            el: '#app',
+                            data: {
+                                primeiroNome:'',
+                                ultimoNome:''
+                                
+                            },
+                            methods:{
+                                alterarNome: function(event){
+                                    this.nomeCompleto = event.target.value;
+                                }
+                            },
+                            computed:{ 
+                                nomeCompleto:{
+                                    get: function(){
+                                        return this.primeiroNome + ' ' + this.ultimoNome;
+                                    },
+                                    set: function(novoNome){
+                                        var nomes = novoNome.split(' ');
+                                        this.primeiroNome = nomes[0];
+                                        this.ultimoNome = nomes[nomes.length-1];
+                                    }
+                        
+                                }
+                            },
+                           
+                            
+                  })  
+              </script>
+
+          </body>
+  </html>
+
