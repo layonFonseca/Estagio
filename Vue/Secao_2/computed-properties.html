@@ -34,10 +34,13 @@
 
                  <h2>Computed Properties e Watchers</h2>
 
-                  <p>Nome Completo: {{ nomeCompleto }}</p>
-                  <button @click="alterarNomes">Alterar nomes </button>
+                  <p>Nome Completo: {{ nomeCompleto1 }}</p>
+                  <button @click="alterarNomes">Alterar nomes  </button>
 
+                  <h3>Quando utilizar Watchers</h3>
 
+                  <p>Nome: {{ nomeCompleto }}</p>
+                  <button @click="alterarNome">Alterar nome</button>
               </div>
 
               <script>
@@ -48,7 +51,7 @@
                                 nomeDoAutorInteiro: false,
                                 primeiroNome:'Layon',
                                 ultimoNome:'Martins', 
-                                //nomeCompleto: 'Layon Martins'
+                                nomeCompleto: 'Layon Martins'
                                 
                             },
                             methods:{
@@ -62,6 +65,9 @@
                                 alterarNomes: function(event){
                                     this.primeiroNome = 'Martins';
                                     this.ultimoNome =  'Layon';
+                                },
+                                alterarNome: function(event){
+                                    this.nomeCompleto = 'Martins Layon ';
                                 }
                             },
                             computed:{ 
@@ -69,7 +75,7 @@
                                     console.log('Computed ');
                                     return this.curso.split('').reverse().join('');
                                 },
-                                nomeCompleto: function(){
+                                nomeCompleto1: function(){
                                     console.log('Computed ');
                                     return this.primeiroNome + ' ' + this.ultimoNome;
                                 }
@@ -80,15 +86,16 @@
                             Os methods são chamados em cada nova renderização, mesmo que estejamos utilizando outras propriedades que nao influenciam
                             em determinado method, portanto sempre que possivel, utilize computed properties
                              */
-                            /*
-                            watch:{
-                                primeiroNome: function(novoPrimeiroNome, antigoPrimeiroNome){
-                                    this.nomeCompleto = novoPrimeiroNome + ' ' + this.ultimoNome;
-                                },
-                                ultimoNome: function(novoUltimoNome, antigoUltimoNome){
-                                    this.nomeCompleto = this.primeiroNome + ' ' + novoUltimoNome;
-                                }
-                            }*/
+                            
+                            watch:{ //watchers são usuais quando você tem algum evento assíncrono para acontecer como tempo de execucao
+                                nomeCompleto: function(novoNomeCompleto, antigoNomeCompleto) {
+                                    var vm = this;
+                                    setTimeout(function() { 
+                                        vm.nomeCompleto = 'Nome resetado';
+                                       
+                                    }, 3000);
+                                }                         
+                            }
                             
                   })  
               </script>
