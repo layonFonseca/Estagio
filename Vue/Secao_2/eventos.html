@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+  <html lang="en">
+
+      <head>
+          <meta charset="UTF-8">
+          <script src="https://unpkg.com/vue@2"></script>
+          <title>Trabalhando com VueJs</title>
+      </head>
+
+          <body>
+
+              <div id="app">
+                  <input v-on:blur="exibirNome('Meu nome é ', $event)">
+                  <p> {{ nome }} </p>
+                  <br>
+
+                  <p v-on:click="onClick('P', $event)">
+                      Curso de VueJs
+                      <button v-on:click.stop="onClick('button', $event)">Clique aqui</button> <!--IMPORTANTE: o .stop é para evitar propagação de eventos-->
+
+                  </p>
+
+                  <form>
+                      <input type="text">
+                      <button type="submit" v-on:click="onSub">Enviar sem modificador</button>
+                      <button type="submit" v-on:click.prevent="onSub">Enviar com modificador</button>
+                  </form>
+                 
+                  <br><br><br>
+
+                  
+                  <input v-on:keyup="onKey" placeholder="Quaquer tecla">
+                  
+                  <br><br>
+
+                  
+                  <input v-on:keyup.enter="onKey" placeholder="Tecla Enter">
+                  
+                  <br><br>
+
+                  
+                  <input v-on:keyup.enter.esc ="onKey" placeholder="Teclas Enter ou Escape">
+
+                  <br><br>
+
+                  <input v-on:keyup.arrow-up ="onKey" placeholder="Tecla Seta para cima">
+
+                  <br><br>
+
+                  <input v-on:keyup.ctrl.enter ="onKey" placeholder="Teclas CTRL + Enter"> <!--Teclas do sitema como CTRL, SHIFT funcionam como requisitos para outras, 
+                    mas apenas uma libera as outras teclas do sistema e aceita o evento -->
+
+                  <br><br>
+
+                  <input v-on:keyup.ctrl.enter.exact ="onKey" placeholder="Teclas CTRL + Enter (exact)"><!-- O modificador exact faz com que reconheça apenas o evento especificado-->
+
+                  <br><br><br>
+
+                  <button v-on:click.left="onClicked">Botão esquerdo</button>
+                  <br><br>
+
+                  <button v-on:click.middle="onClicked">Botão do meio</button>
+
+                  <br><br>
+
+                  <button v-on:click.right="onClicked">Botão direito</button>
+
+                  <br><br>
+
+                  <button v-on:click.right.prevent="onClicked">Botão direito sem menu de contexto</button>
+
+                  <br><br>
+                  <!--Property e event binding: v-bind pode-se usar apenas :nome do atributo como: :href=""
+                                                v-on pode-se usar o @: como @click="onClick"
+                  -->
+                  <a :href="docs">VueJs</a>
+                  <br><br>
+                  <button @click="onClicked">Clique</button>
+              </div>
+
+              <script>
+                      new Vue({
+                            el: '#app',
+                            data: {
+                                nome:'',
+                                docs: 'https://vuejs.org'
+                
+                            },
+                            methods:{
+                                exibirNome: function(texto, event){
+                                    this.nome = texto + event.target.value;
+                                },
+                                onClick: function(elementoAlvo, event){
+                                    console.log(event.type, ':', elementoAlvo);
+                                },
+                                onSub: function(event){
+                                    console.log('Formulario enviado');
+                                },
+                                onKey: function(event){
+                                    console.log('Tecla '+ event.key + ' pressionada!');
+                                },
+                                onClicked:function(event){
+                                    console.log('Botao ' + event.button+ ' pressionado');
+                                }
+                            
+                            }
+                  })
+              </script>
+
+          </body>
+  </html>
+

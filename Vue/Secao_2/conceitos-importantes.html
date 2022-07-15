@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+  <html lang="en">
+
+      <head>
+          <meta charset="UTF-8">
+          <script src="https://unpkg.com/vue@2"></script>
+          <title>Trabalhando com VueJs</title>
+      </head>
+
+          <body>
+
+              <div id="app">
+                  <p>{{message}}</p>
+                  <p>Meu nome é {{ nome }}  </p>
+                  <p>Usando métodos que retornam strings:<br> <h3>Produto {{ produto() }}</h3></p>
+                  <input v-on:input="mudarNome">
+
+                  <br>
+                  <br>
+                  <br>
+
+                <!-- Usando diretivas, através das expressoes do script como parâmetros de data ou os metodos como no v-on:input -->
+                
+                  <a v-bind:href="docs" >VueJs</a> 
+                  <p>Email: <span v-text="email"></span></p>
+
+                  <br>
+                  <br>
+                  <br>
+                  <p v-once>Nome Inteiro: {{nomeInteiro}}</p>
+                  <p>Nome: {{getNome()}}</p>
+
+                  <br>
+                  <br>
+                  <p>{{curso}}</p>
+                  <p v-html="curso"></p> <!-- HTML puro, evite fazer isso com interações ao usuário -->
+
+                  <br>
+                  <br>
+
+                  <button style="color:red " v-on:click="incrementar">Clique</button>
+                  <p>Botão clicado {{cliques}} vezes</p>
+                  
+                  <p v-on:mousemove="atualizarCoordenadas">Coordenadas x: {{x}} e y: {{y}}</p>
+              </div>
+
+              <script>
+                      new Vue({
+                            el: '#app',
+                            data: {
+                                message: 'Olá VueJs!',
+                                nome:'', 
+                                descricao: 'Industrializado',
+                                docs:'https://vuejs.org',
+                                email:'layon.martins@ufv.br',
+                                nomeInteiro:'Layon Martins',
+                                curso: 'Curso de <span style="color: red">VueJs</span>',
+                                cliques: 0,
+                                x:0,
+                                y:0
+                            },
+                            methods:{
+                                mudarNome: function(event){
+                                    this.nome = event.target.value;
+                                },
+                                produto: function(){
+                                    return this.descricao;
+                                },
+                                getNome: function(){
+                                    this.nomeInteiro = "Layon";
+                                    return this.nomeInteiro;
+                                },
+                                incrementar: function(event){
+                                    console.log(event);
+                                    this.cliques++;
+                                },
+                                atualizarCoordenadas: function(event){
+                                    this.x = event.clientX;
+                                    this.y = event.clientY;
+                                }
+                            
+                            }
+                  })
+          </script>
+
+          </body>
+  </html>
+

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+  <html lang="en">
+
+      <head>
+          <meta charset="UTF-8">
+          <script src="https://unpkg.com/vue@2"></script>
+          <title>Trabalhando com VueJs</title>
+      </head>
+
+          <body>
+
+              <div id="app">
+
+                 <h2>Computed Properties e Methods</h2>
+                 <p> {{ curso }} => {{curso.split('').reverse().join('')}}</p> <!--Faça apenas com coisas simples -->
+                 
+                 <br>
+
+                 <p> {{ curso }} => {{cursoInvertidoComputed}}</p>
+
+                 <br>
+
+                 <input @keyup.enter="alterarNomeDoCurso">
+
+                 <br><br><br>
+
+                 <p>Nome Original: {{ curso }}</p>
+                 <p>Nome Invertido (usando computed): {{ cursoInvertidoComputed }}</p>
+                 <p>Nome Invertido (usando method): {{ cursoInvertidoMethod() }}</p>
+                 <p>Autor: {{ nomeDoAutorInteiro ? 'Layon Martins' : 'Layon' }}</p>
+                 <button @click="nomeDoAutorInteiro = !nomeDoAutorInteiro"> Alterar nome do autor</button>
+
+                 <br><br><br><br>
+
+                 <h2>Computed Properties e Watchers</h2>
+
+                  <p>Nome Completo: {{ nomeCompleto }}</p>
+                  <button @click="alterarNomes">Alterar nomes </button>
+
+
+              </div>
+
+              <script>
+                      new Vue({
+                            el: '#app',
+                            data: {
+                                curso: 'Curso de VueJs',
+                                nomeDoAutorInteiro: false,
+                                primeiroNome:'Layon',
+                                ultimoNome:'Martins', 
+                                //nomeCompleto: 'Layon Martins'
+                                
+                            },
+                            methods:{
+                                alterarNomeDoCurso: function(event){
+                                    this.curso = event.target.value;
+                                },
+                                cursoInvertidoMethod: function(){
+                                    console.log('Method');
+                                    return this.curso.split('').reverse().join('');
+                                },
+                                alterarNomes: function(event){
+                                    this.primeiroNome = 'Martins';
+                                    this.ultimoNome =  'Layon';
+                                }
+                            },
+                            computed:{ 
+                                cursoInvertidoComputed: function(){
+                                    console.log('Computed ');
+                                    return this.curso.split('').reverse().join('');
+                                },
+                                nomeCompleto: function(){
+                                    console.log('Computed ');
+                                    return this.primeiroNome + ' ' + this.ultimoNome;
+                                }
+                            },
+                            /* Computed Properties são mais vantajosas pois utilizam das dependencias dos dados, ou seja,
+                             armazenam em cache os valores das propriedades que estão sendo chamadas para serem utilizados N vezes, 
+                             até que seja feita alguma alteração na propriedade
+                            Os methods são chamados em cada nova renderização, mesmo que estejamos utilizando outras propriedades que nao influenciam
+                            em determinado method, portanto sempre que possivel, utilize computed properties
+                             */
+                            /*
+                            watch:{
+                                primeiroNome: function(novoPrimeiroNome, antigoPrimeiroNome){
+                                    this.nomeCompleto = novoPrimeiroNome + ' ' + this.ultimoNome;
+                                },
+                                ultimoNome: function(novoUltimoNome, antigoUltimoNome){
+                                    this.nomeCompleto = this.primeiroNome + ' ' + novoUltimoNome;
+                                }
+                            }*/
+                            
+                  })  
+              </script>
+
+          </body>
+  </html>
+
