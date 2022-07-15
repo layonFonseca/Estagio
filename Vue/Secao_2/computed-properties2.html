@@ -12,6 +12,11 @@
               <div id="app">
                 <p>Nome completo: {{ nomeCompleto }}</p>
                 <input @keyup.enter="alterarNome" placeholder="Novo nome">
+                <br><br><br>
+                <input :value="nome" @input="nome = $event.target.value"> 
+                <p>Nome: {{nome}}</p>
+                <br> 
+                <input v-model="nome"> <!--Mesma coisa que o input acima, porém o vue realiza de uma maneira bem mais simples-->
               </div>
 
               <script>
@@ -19,7 +24,8 @@
                             el: '#app',
                             data: {
                                 primeiroNome:'',
-                                ultimoNome:''
+                                ultimoNome:'',
+                                nome: 'Layon'
                                 
                             },
                             methods:{
