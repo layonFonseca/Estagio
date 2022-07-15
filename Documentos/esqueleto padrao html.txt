@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+  <html lang="en">
+
+      <head>
+          <meta charset="UTF-8">
+          <script src="https://unpkg.com/vue@2"></script>
+          <title>Trabalhando com VueJs</title>
+      
+          <style>
+              
+          </style>
+      
+        </head>
+
+          <body>
+
+              <div id="app">
+
+                  <div
+                        >
+                  </div>
+
+                  
+              </div>
+
+              <script>
+                      new Vue({
+                            el: '#app',
+                            data: {
+                                
+                            },
+                            methods:{
+                                
+                            },
+                            computed:{ 
+                                
+                                }
+                           
+                  })  
+              </script>
+
+          </body>
+  </html>
+
