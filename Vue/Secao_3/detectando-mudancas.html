@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+  <html lang="en">
+
+      <head>
+          <meta charset="UTF-8">
+          <script src="https://unpkg.com/vue@2"></script>
+          <title>Trabalhando com VueJs</title>
+      
+          <style>
+              
+          </style>
+      
+        </head>
+
+          <body>
+
+              <div id="app">
+
+                  <h1>Detectando Mudanças com Arrays</h1>  
+                  <br>
+                  <h2>Produtos</h2>
+                  <ul>
+                      <li v-for="produto in produtos" :key="produto.id">{{ produto.nome }}</li>
+                  </ul>
+
+                  <button @click="addicionarProduto">Adicionar Produto</button>
+                  <button @click="produtos = produtos.slice(0,4)">Substituir Array</button>
+                  <button @click="substituirProduto">Substituir Produto</button>
+                  <button @click="cortarArray">Corta Array</button>
+
+                  <br><br><br>
+
+                  <h1>Detectando Mudanças com Objetos</h1>  
+                  <br>
+                  <h2>Objetos</h2>
+
+                  <ul>
+                      <li v-for="(valor, chave) in produto">{{ chave }}: {{ valor }}</li>
+                  </ul>
+                  <button @click="adicionarPropriedade">Adicionar Propriedade</button>
+                  <button @click="substituirObjeto">Substituir Objeto</button>
+              </div>
+
+              <script>
+                      new Vue({
+                            el: '#app',
+                            data: {
+                                produtos:[
+                                    { id: 1, nome:'Monitor' },
+                                    { id: 2, nome:'Teclado' },
+                                    { id: 3, nome:'Mouse' },
+                                    { id: 4, nome:'Processador' },
+                                  ],
+                                produto:{
+                                    id: 2,
+                                    nome: 'Teclado',
+                                    marca: 'Dell'
+                                }
+                            },
+                            methods:{
+                                addicionarProduto: function(event){
+                                      var id = this.produtos.length + 1;
+                                      this.produtos.push({id:id, nome: 'Produto ' + id});
+                                },
+                                substituirProduto: function(event){
+                                      var tamanho = this.produtos.length;
+                                      var indice = Math.round(tamanho/2);
+                                      var novoProduto = {id:(tamanho+1), nome: 'Produto ' + (tamanho+1)};
+                                      console.log(tamanho, indice);
+                                      //this.produtos[indice] = novoProduto; // Não reativo
+                                      //Vue.set(this.produtos, indice, novoProduto); // Pelo Vue
+                                      //this.$set(this.produtos, indice, novoProduto); usando a instancia
+                                      this.produtos.splice(indice, 1, novoProduto); // Pelo JavaScript
+                                     
+                                },
+                                cortarArray: function(event){
+                                    //this.produtos.length = 2; // Nao reativo
+                                    this.produtos.splice(2);
+                                },
+                                adicionarPropriedade: function(event){
+                                    //Vue.set(this.produto, 'preco', 100);
+                                    this.$set(this.produto, 'preco', 80);
+                                },
+                                substituirObjeto: function(event){
+                                    this.produto = Object.assign({}, this.produto, {
+                                      preco: 120,
+                                      cor: 'preto'
+                                    });
+                                }
+                            },
+                            computed:{ 
+                                
+                                }
+                           
+                  })  
+              </script>
+
+          </body>
+  </html>
+
