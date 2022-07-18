@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+  <html lang="en">
+
+      <head>
+          <meta charset="UTF-8">
+          <script src="https://unpkg.com/vue@2"></script>
+          <title>Trabalhando com VueJs</title>
+      
+          <style>
+              
+          </style>
+      
+        </head>
+
+          <body>
+
+              <div id="app">
+                  <p v-if="mostrar">Olá VueJS!</p>
+                  <p v-else>Até logo VueJS!</p>
+
+                  <button @click="mostrar = !mostrar">Alternar</button>
+                  <br><br><br>
+
+                  <p v-if="nota === 'A'">Você tirou um "A"!</p>
+                  <p v-else-if="nota === 'B'">Você tirou um "B"!</p>
+                  <p v-else-if="nota === 'C'"> Você tirou um "C"!</p>
+                  <p v-else>Nota ainda não publicada</p>
+
+                  <input v-model = "nota" placeholder="Nota">
+
+              </div>
+
+              <script>
+                      new Vue({
+                            el: '#app',
+                            data: {
+                                mostrar: true,
+                                nota: ''
+                            },
+                            methods:{
+                                
+                            },
+                            computed:{ 
+                                
+                                }
+                           
+                  })  
+              </script>
+
+          </body>
+  </html>
+

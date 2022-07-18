@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+  <html lang="en">
+
+      <head>
+          <meta charset="UTF-8">
+          <script src="https://unpkg.com/vue@2"></script>
+          <title>Trabalhando com VueJs</title>
+      
+          <style>
+              
+          </style>
+      
+        </head>
+
+          <body>
+
+              <div id="app">
+                    <ul>
+                        <p>Olá VueJS!</p>
+                        <li>Item 1</li>
+                        <template v-if="mostrarItens">
+                          <li>Item 2</li>
+                          <li>Item 3</li>
+                        </template>
+
+                    </ul>
+
+                    <br><br><br>
+
+                    <button @click="login = !login">Toggle</button>
+
+                    <template v-if="login">
+                        <label>Login: </label>
+                        <input placeholder="Login" key="campo-login">
+                    </template>
+
+                    <template v-else>
+                      <label>Email: </label>
+                      <input placeholder="Email" key="campo-email">
+                  </template>
+
+                  <br><br><br>
+
+                  <button @click="mostrar = !mostrar">Show</button>
+                  <p v-show="mostrar">Diretiva v-show "{{ mostrar }}": <span>{{  texto }}</span></p>
+                  <input v-model="texto">
+
+                <!-- Diferenças do v-show e v-if 
+                        v-show trabalha diretamente no display do css, quando é falso ela
+                        adiciona um style display false no elemento que eu estou ultilizando ocultando-o, sem remove-lo do DOM
+                        ao contrario de v-if que remove ou adiciona o elemento ao DOM
+                        v-show não trabalha com o template ou ao mesmo tempo com o v-if
+                        utilize v-show quando tiver a necessidade de que um elemento seja frequentemente mostrado ou ocutado
+                        e v-if quando tiver pouca frequencia de ocorrencia pois ela tem maior custo
+                -->
+                  <br><br><br>
+
+                  <h2>Renderizando Listas com v-for</h2>
+
+                  <br><br><br>
+
+                  <h1>Produtos</h1>
+
+                  <ul>
+                      <li v-for="(produto, i) in produtos">{{ texto }} {{ i}}:  {{ produto }}</li>
+                       <!-- o primeiro parametro é o nome do tipo de item que tem no vetor, nesse caso produto
+                       e o segundo é o indice desse item no vetor nesse caso i, o nome é escolha de implementação -->
+                  </ul>
+
+                </div>
+              <script>
+                      new Vue({
+                            el: '#app',
+                            data: {
+                                mostrar: true,  
+                                mostrarItens: true,
+                                login: true,
+                                texto: "Produto",
+                                produtos:[
+                                    'Monitor',
+                                    'Teclado',
+                                    'Mouse'
+                                ]
+                            },
+                            methods:{
+                                
+                            },
+                            computed:{ 
+                                
+                                }
+                           
+                  })  
+              </script>
+
+          </body>
+  </html>
+
