@@ -15,12 +15,7 @@
           <body>
 
               <div id="app">
-
-                  <div
-                        >
-                  </div>
-
-                  
+                                
               </div>
 
               <script>

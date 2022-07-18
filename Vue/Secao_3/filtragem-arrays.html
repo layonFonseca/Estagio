@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+  <html lang="en">
+
+      <head>
+          <meta charset="UTF-8">
+          <script src="https://unpkg.com/vue@2"></script>
+          <title>Trabalhando com VueJs</title>
+      
+          <style>
+              
+          </style>
+      
+        </head>
+
+          <body>
+
+              <div id="app">
+                  <h1>Tarefas com v-if:</h1>     
+                  <ul>
+                      <li v-for="tarefa in tarefas" :key="tarefa.id" v-if="!tarefa.completa">{{ tarefa.titulo }}</li>
+
+                  </ul> 
+
+                  <h1>Tarefas com computed properties:</h1>     
+                  <ul v-if="tarefasIncompletas.length">
+                    <li v-for="tarefa in tarefasIncompletas" :key="tarefa.id">{{ tarefa.titulo }}</li>
+
+                  </ul>
+                  <p v-else>Não existem tarefas para fazer</p>
+              </div>
+
+              <script>
+                      new Vue({
+                            el: '#app',
+                            data: {
+                                tarefas:[
+                                  { id: 1, titulo:'Aprender JavaScript', completa:true },
+                                  { id: 2, titulo:'Aprender VueJS', completa:false },
+                                  { id: 3, titulo:'Aprender Vuex', completa: false},
+                                  { id: 4, titulo:'Aprender VueRouter', completa:false }
+                                ]
+                            },
+                            methods:{
+                                
+                            },
+                            computed:{ 
+                                tarefasIncompletas: function(){
+                                    return this.tarefas.filter(function(tarefa){
+                                        return !tarefa.completa;
+                                    });
+                                   
+                                }
+                                
+                                }
+                           
+                  })  
+              </script>
+
+          </body>
+  </html>
+
