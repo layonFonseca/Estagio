@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+  <html lang="en">
+
+      <head>
+          <meta charset="UTF-8">
+          <script src="https://unpkg.com/vue@2"></script>
+          <title>Trabalhando com VueJs</title>
+      
+          <style>
+              .separador{
+                  list-style-type: none;
+                  border-bottom: 1px solid #000;
+              }
+          </style>
+      
+        </head>
+ 
+          <body>
+
+              <div id="app">
+                  <h2>Iterando objetos com v-for</h2>
+                  <ul>
+                    <li v-for="valor in produto">{{ valor }}</li>
+                  </ul>
+
+                  <ul>
+                    <li v-for="(valor, chave) in produto">{{ chave }}:{{ valor }}</li>
+                  </ul>
+                    
+                  <ul>
+                    <li v-for="(valor, chave, indice) in produto">{{indice}} - {{ chave }}:{{ valor }}</li>
+                  </ul> 
+
+                  <!--Para objetos a primeira posicao corresponde ao valor de determinada variavel, se é nome valor
+                  será o nome de um produto por exemplo, a segunda posicao corresponde a exatamente qual variavel, 
+                  qual chave estamos acessando deste objeto e a terceira posicao é o índice de maneira análoga
+                  a um vetor, a posicao em qual aquela chave ocupa no objeto
+                  -->
+
+                  <br><br><br>
+                  <h2>Iterando intervalos numericos com v-for</h2>
+                  <ul>
+                    <li v-for="(valor,indice) in 10">{{indice}}: {{ valor }}</li>
+                    <!--Os valores no intervalo comecam com 1 e não 0, mas o indice sim-->
+                  </ul>
+                  <br><br><br>
+
+                  <h2>Rastreando identidade dos elementos no v-for com key</h2>
+                  <p>Produtos</p>
+
+                  <ul>
+                    <li v-for="produto in produtos">{{ produto.nome}}</li>
+                  </ul>
+
+                  <ul>
+                    <li v-for="produto in produtos" :key="produto.id">{{ produto.nome}}</li>
+                  </ul>
+
+                  <button @click="produtos.reverse  ()">Inverter Lista</button>
+                  <button @click="addProduto">Inserir Produto</button>
+
+                  <br><br><br>
+
+                  <h2>Agrupando elementos com template</h2>
+
+                  <p>Produtos</p>
+
+                  <ul>
+                      <template v-for="produto in produtos">
+                          <li>{{ produto.nome}}</li>
+                          <li class="separador"></li>
+                      </template>
+                  </ul>
+
+
+              </div>
+
+              <script>
+                      new Vue({
+                            el: '#app',
+                            data: {
+                                produto:{
+                                    id: 1,
+                                    nome: 'Teclado',
+                                    marca: 'Dell',
+                                    preco: 100
+
+                                },
+                                produtos:[
+                                  { id: 1, nome:'Monitor' },
+                                  { id: 2, nome:'Teclado' },
+                                  { id: 3, nome:'Mouse' },
+                                  { id: 4, nome:'Processador' },
+                                ]
+                            },
+                            methods:{
+                                addProduto: function(){
+                                    var id = this.produtos.length + 1;
+                                    this.produtos.push({id:id, nome: 'Produto ' + id});
+                                }
+                            },
+                            computed:{ 
+                                
+                                }
+                           
+                  })  
+              </script>
+
+          </body>
+  </html>
+
